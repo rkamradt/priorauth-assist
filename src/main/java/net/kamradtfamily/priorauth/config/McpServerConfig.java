@@ -5,7 +5,7 @@ import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.server.McpSyncServer;
 import io.modelcontextprotocol.server.transport.StdioServerTransportProvider;
-import io.modelcontextprotocol.server.transport.WebFluxSseServerTransportProviderProvider;
+import io.modelcontextprotocol.server.transport.WebFluxSseServerTransportProvider;
 import io.modelcontextprotocol.spec.McpSchema;
 import net.kamradtfamily.priorauth.tool.ToolHandler;
 import org.springframework.beans.factory.annotation.Value;
