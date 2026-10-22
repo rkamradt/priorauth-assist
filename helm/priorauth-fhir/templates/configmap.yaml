@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}-config
+  namespace: {{ .Chart.Name }}
+  labels:
+    app: {{ .Chart.Name }}
+data:
+  application.yaml: |
+    spring:
+      datasource:
+        url: {{ .Values.db.url }}
+        username: {{ .Values.db.username }}
+        driverClassName: org.postgresql.Driver
+      jpa:
+        properties:
+          hibernate:
+            dialect: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgres94Dialect
+        hibernate:
+          ddl-auto: update
+    hapi:
+      fhir:
+        fhir_version: R4
+        default_encoding: JSON
+        allow_multiple_delete: true
+        reuse_cached_search_results_millis: -1

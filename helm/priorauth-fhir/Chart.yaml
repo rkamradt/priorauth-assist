@@ -1,0 +1,6 @@
+apiVersion: v2
+name: priorauth-fhir
+description: HAPI FHIR R4 server for priorauth-assist demo data
+type: application
+version: 0.1.0
+appVersion: "v7.4.0"

@@ -1,0 +1,267 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Patient/knee-partial-001",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "knee-partial-001",
+        "name": [
+          {
+            "use": "official",
+            "family": "Webb",
+            "given": ["Marcus"]
+          }
+        ],
+        "gender": "male",
+        "birthDate": "1975-07-22"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/knee-partial-001"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-001",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-001",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-07-14"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-001"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-002",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-002",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-07-18"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-002"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-003",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-003",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-07-23"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-003"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-004",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-004",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-07-28"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-004"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-005",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-005",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-08-01"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-005"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-006",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-006",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-08-06"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-006"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-007",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-007",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-08-11"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-007"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Procedure/knee-partial-pt-008",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "knee-partial-pt-008",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "229070002",
+              "display": "Physical therapy procedure"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "performedDateTime": "2025-08-15"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/knee-partial-pt-008"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Observation/knee-partial-pain-001",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "knee-partial-pain-001",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "exam"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "72514-3",
+              "display": "Pain severity - Verbal numeric rating scale [Score] - Reported"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/knee-partial-001"
+        },
+        "effectiveDateTime": "2025-08-20",
+        "valueQuantity": {
+          "value": 6,
+          "unit": "{score}",
+          "system": "http://unitsofmeasure.org",
+          "code": "{score}"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/knee-partial-pain-001"
+      }
+    }
+  ]
+}

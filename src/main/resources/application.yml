@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: priorauth-assist
+  main:
+    web-application-type: reactive
+
+priorauth:
+  fhir:
+    base-url: ${FHIR_BASE_URL:http://localhost:8080/fhir}
+  mcp:
+    transport: ${MCP_TRANSPORT:http}   # http or stdio
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,31 @@
+replicaCount: 1
+
+image:
+  repository: hapiproject/hapi
+  tag: "v7.4.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+storage:
+  size: 5Gi
+  storageClass: local-path
+
+# HAPI FHIR uses PostgreSQL from cluster
+db:
+  url: "jdbc:postgresql://postgresql.postgresql.svc.cluster.local:5432/priorauth_fhir"
+  username: "priorauth_fhir"
+  # password from secret
+
+secretName: priorauth-fhir-secret
+
+resources:
+  requests:
+    memory: 512Mi
+    cpu: 100m
+  limits:
+    memory: 1Gi
+    cpu: 1000m

@@ -1,0 +1,42 @@
+id: lumbar-mri
+version: "1.0"
+service: "Lumbar MRI"
+serviceCodes:
+  - "72148"   # CPT: MRI lumbar spine without contrast
+  - "72158"   # CPT: MRI lumbar spine with and without contrast
+requiresPriorAuth: true
+plainText: |
+  Lumbar spine MRI requires documentation of:
+  1. At least 6 weeks of conservative treatment (physical therapy, >=12 visits) within the past 90 days
+  2. Prior lumbar X-ray
+  3. Documented pain score > 4/10
+  Note: Red-flag symptoms (cauda equina, fracture, malignancy) bypass conservative care requirement.
+requiredDocuments: |
+  - Physical therapy notes (minimum 12 sessions in 90 days)
+  - Lumbar X-ray radiology report
+  - Pain assessment
+  - Attestation that no red-flag symptoms are present (or documentation of red flags if applicable)
+criteria:
+  - id: pt_duration
+    type: procedure_count
+    description: "Physical therapy visits >= 12 in past 90 days"
+    codeSystem: "http://snomed.info/sct"
+    code: "229070002"
+    codes:
+      - "229070002"
+      - "91251008"
+    minOccurrences: 12
+    lookbackDays: 90
+  - id: prior_xray
+    type: procedure_present
+    description: "Lumbar spine X-ray documented"
+    codeSystem: "http://loinc.org"
+    code: "24969-6"
+    codes:
+      - "24969-6"
+      - "36643-5"
+  - id: pain_score
+    type: observation_value
+    description: "Pain score > 4 on numeric rating scale"
+    loincCode: "72514-3"
+    minValue: 4.0

@@ -1,0 +1,41 @@
+id: knee-mri
+version: "1.0"
+service: "Knee MRI"
+serviceCodes:
+  - "73721"   # CPT: MRI knee without contrast
+  - "73723"   # CPT: MRI knee with and without contrast
+requiresPriorAuth: true
+plainText: |
+  Knee MRI requires documentation of:
+  1. At least 6 weeks of conservative treatment (physical therapy, >=12 visits) within the past 90 days
+  2. Prior imaging (X-ray of the knee)
+  3. Pain score > 4/10 on a standardized scale
+requiredDocuments: |
+  - Physical therapy notes for all visits (minimum 12 sessions in 90 days)
+  - Radiology report for knee X-ray
+  - Completed pain assessment form
+criteria:
+  - id: pt_duration
+    type: procedure_count
+    description: "Physical therapy visits >= 12 in past 90 days"
+    codeSystem: "http://snomed.info/sct"
+    code: "229070002"
+    codes:
+      - "229070002"
+      - "91251008"
+    minOccurrences: 12
+    lookbackDays: 90
+  - id: prior_xray
+    type: procedure_present
+    description: "X-ray of the knee documented"
+    codeSystem: "http://loinc.org"
+    code: "24727-8"    # LOINC: XR Knee 2 views
+    codes:
+      - "24727-8"
+      - "24728-6"
+      - "36643-5"
+  - id: pain_score
+    type: observation_value
+    description: "Pain score > 4 on numeric rating scale"
+    loincCode: "72514-3"   # LOINC: pain severity verbal numeric scale
+    minValue: 4.0

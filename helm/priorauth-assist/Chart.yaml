@@ -1,0 +1,6 @@
+apiVersion: v2
+name: priorauth-assist
+description: Prior-authorization documentation assistant (MCP server + FHIR tools)
+type: application
+version: 0.1.0
+appVersion: "latest"

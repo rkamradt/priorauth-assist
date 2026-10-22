@@ -1,0 +1,120 @@
+{
+  "resourceType": "Bundle",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Patient/drug-step-met-001",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "drug-step-met-001",
+        "name": [
+          {
+            "use": "official",
+            "family": "Vasquez",
+            "given": ["Elena"]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1969-09-27"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/drug-step-met-001"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/Condition/drug-step-met-ra-001",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "drug-step-met-ra-001",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active"
+            }
+          ]
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://hl7.org/fhir/sid/icd-10-cm",
+              "code": "M05.79",
+              "display": "Rheumatoid arthritis with rheumatoid factor of multiple sites without organ or systems involvement"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/drug-step-met-001"
+        },
+        "recordedDate": "2025-07-10"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/drug-step-met-ra-001"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/MedicationRequest/drug-step-met-mtx-001",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "drug-step-met-mtx-001",
+        "status": "completed",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "41493",
+              "display": "Methotrexate"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/drug-step-met-001"
+        },
+        "authoredOn": "2025-01-15",
+        "note": [
+          {
+            "text": "Prior DMARD trial; discontinued after 4 months due to GI intolerance"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "MedicationRequest/drug-step-met-mtx-001"
+      }
+    },
+    {
+      "fullUrl": "http://priorauth-fhir.priorauth-fhir:8080/fhir/MedicationRequest/drug-step-met-hcq-001",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "drug-step-met-hcq-001",
+        "status": "completed",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "5521",
+              "display": "Hydroxychloroquine"
+            }
+          ]
+        },
+        "subject": {
+          "reference": "Patient/drug-step-met-001"
+        },
+        "authoredOn": "2025-04-20",
+        "note": [
+          {
+            "text": "Second DMARD trial; inadequate response after 3 months of therapy"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "MedicationRequest/drug-step-met-hcq-001"
+      }
+    }
+  ]
+}

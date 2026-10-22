@@ -1,0 +1,38 @@
+id: sleep-study
+version: "1.0"
+service: "Sleep Study"
+serviceCodes:
+  - "95810"   # CPT: polysomnography, >=7 parameters
+  - "95808"   # CPT: polysomnography, <=6 parameters
+requiresPriorAuth: true
+plainText: |
+  Overnight polysomnography (sleep study) requires:
+  1. Epworth Sleepiness Scale score >= 10
+  2. BMI documented (overweight/obesity is a significant risk factor)
+  3. At least one documented sleep-related symptom: snoring, witnessed apneas, or excessive daytime sleepiness
+requiredDocuments: |
+  - Completed Epworth Sleepiness Scale questionnaire
+  - Recent BMI measurement (within 6 months)
+  - Clinical notes documenting sleep symptoms
+criteria:
+  - id: epworth_score
+    type: observation_value
+    description: "Epworth Sleepiness Scale score >= 10"
+    loincCode: "89243-0"   # LOINC: Epworth Sleepiness Scale total score
+    minValue: 10.0
+  - id: bmi_documented
+    type: observation_count
+    description: "BMI documented within past 6 months"
+    codeSystem: "http://loinc.org"
+    code: "39156-5"   # LOINC: BMI
+    minOccurrences: 1
+    lookbackDays: 180
+  - id: sleep_symptom
+    type: condition_present
+    description: "Documented sleep-related symptom (snoring, apnea, or EDS)"
+    codeSystem: "http://snomed.info/sct"
+    code: "72863001"   # SNOMED: snoring
+    codes:
+      - "72863001"   # snoring
+      - "73430006"   # sleep apnea
+      - "44186003"   # excessive daytime sleepiness

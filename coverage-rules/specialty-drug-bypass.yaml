@@ -1,0 +1,33 @@
+id: specialty-drug-bypass
+version: "1.0"
+service: "Adalimumab Bypass"
+serviceCodes:
+  - "J0135"
+requiresPriorAuth: true
+plainText: |
+  Step therapy bypass for adalimumab: apply when the patient has an active contraindication
+  to conventional DMARDs (e.g., active hepatitis B, severe cytopenias, known lymphoma).
+  Requires documentation of the contraindication condition and specialist attestation.
+requiredDocuments: |
+  - Documentation of contraindication condition
+  - Rheumatologist letter of medical necessity with bypass justification
+criteria:
+  - id: contraindication_condition
+    type: condition_present
+    description: "Active contraindication to conventional DMARD therapy"
+    codeSystem: "http://snomed.info/sct"
+    code: "66071002"   # SNOMED: viral hepatitis B
+    codes:
+      - "66071002"   # hepatitis B
+      - "414029004"  # lymphoma
+      - "59620008"   # agranulocytosis
+  - id: ra_diagnosis
+    type: condition_present
+    description: "Confirmed rheumatoid arthritis diagnosis"
+    codeSystem: "http://hl7.org/fhir/sid/icd-10-cm"
+    code: "M05.79"
+    codes:
+      - "M05.79"
+      - "M06.09"
+      - "M05.9"
+      - "M06.9"

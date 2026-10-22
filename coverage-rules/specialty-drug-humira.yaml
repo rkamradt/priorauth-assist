@@ -1,0 +1,46 @@
+id: specialty-drug-humira
+version: "1.0"
+service: "Adalimumab (Humira)"
+serviceCodes:
+  - "J0135"   # HCPCS: adalimumab injection
+requiresPriorAuth: true
+plainText: |
+  Adalimumab (Humira) for rheumatoid arthritis requires step therapy documentation:
+  1. Confirmed RA diagnosis (ICD-10 M05.x or M06.x)
+  2. Adequate trial (>=3 months) of at least two conventional DMARDs (e.g., methotrexate, hydroxychloroquine, sulfasalazine, leflunomide)
+  3. Documented inadequate response, intolerance, or contraindication to conventional DMARDs
+requiredDocuments: |
+  - RA diagnosis with supporting lab values (RF, anti-CCP)
+  - List of prior DMARDs with start/stop dates and reasons for discontinuation
+  - Letter of medical necessity from rheumatologist
+criteria:
+  - id: ra_diagnosis
+    type: condition_present
+    description: "Confirmed rheumatoid arthritis diagnosis"
+    codeSystem: "http://hl7.org/fhir/sid/icd-10-cm"
+    code: "M05.79"
+    codes:
+      - "M05.79"   # RA with rheumatoid factor, multiple sites
+      - "M06.09"   # seronegative RA, multiple sites
+      - "M05.9"    # RA with rheumatoid factor, unspecified
+      - "M06.9"    # RA, unspecified
+  - id: prior_dmard_1
+    type: medication_present
+    description: "First prior conventional DMARD documented"
+    codeSystem: "http://www.nlm.nih.gov/research/umls/rxnorm"
+    code: "41493"   # RxNorm: methotrexate
+    codes:
+      - "41493"    # methotrexate
+      - "5521"     # hydroxychloroquine
+      - "9524"     # sulfasalazine
+      - "35617"    # leflunomide
+  - id: prior_dmard_2
+    type: medication_present
+    description: "Second prior conventional DMARD documented (different agent)"
+    codeSystem: "http://www.nlm.nih.gov/research/umls/rxnorm"
+    code: "5521"    # hydroxychloroquine as example second agent
+    codes:
+      - "41493"
+      - "5521"
+      - "9524"
+      - "35617"
