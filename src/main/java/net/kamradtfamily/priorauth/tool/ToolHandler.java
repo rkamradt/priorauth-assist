@@ -3,9 +3,8 @@ package net.kamradtfamily.priorauth.tool;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import io.modelcontextprotocol.sdk.McpSyncServerExchange;
-import io.modelcontextprotocol.sdk.types.CallToolResult;
-import io.modelcontextprotocol.sdk.types.TextContent;
+import io.modelcontextprotocol.server.McpSyncServerExchange;
+import io.modelcontextprotocol.spec.McpSchema;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.kamradtfamily.priorauth.audit.AuditLogger;
@@ -33,7 +32,7 @@ public class ToolHandler {
     private final AuditLogger auditLogger;
     private final ObjectMapper objectMapper;
 
-    public CallToolResult handleFindPatient(McpSyncServerExchange exchange, Map<String, Object> args) {
+    public McpSchema.CallToolResult handleFindPatient(McpSyncServerExchange exchange, Map<String, Object> args) {
         auditLogger.log("find_patient", args, callerContext(exchange));
         String query = (String) args.get("query");
         try {
@@ -53,7 +52,7 @@ public class ToolHandler {
         }
     }
 
-    public CallToolResult handleRequirementsFor(McpSyncServerExchange exchange, Map<String, Object> args) {
+    public McpSchema.CallToolResult handleRequirementsFor(McpSyncServerExchange exchange, Map<String, Object> args) {
         auditLogger.log("requirements_for", args, callerContext(exchange));
         String service = (String) args.get("service");
         try {
@@ -83,7 +82,7 @@ public class ToolHandler {
         }
     }
 
-    public CallToolResult handlePrefillDocumentation(McpSyncServerExchange exchange, Map<String, Object> args) {
+    public McpSchema.CallToolResult handlePrefillDocumentation(McpSyncServerExchange exchange, Map<String, Object> args) {
         auditLogger.log("prefill_documentation", args, callerContext(exchange));
         String patientId = (String) args.get("patient_id");
         String service = (String) args.get("service");
@@ -116,7 +115,7 @@ public class ToolHandler {
         }
     }
 
-    public CallToolResult handleMissingItems(McpSyncServerExchange exchange, Map<String, Object> args) {
+    public McpSchema.CallToolResult handleMissingItems(McpSyncServerExchange exchange, Map<String, Object> args) {
         auditLogger.log("missing_items", args, callerContext(exchange));
         String patientId = (String) args.get("patient_id");
         String service = (String) args.get("service");
@@ -151,7 +150,7 @@ public class ToolHandler {
         }
     }
 
-    public CallToolResult handleBuildRequest(McpSyncServerExchange exchange, Map<String, Object> args) {
+    public McpSchema.CallToolResult handleBuildRequest(McpSyncServerExchange exchange, Map<String, Object> args) {
         auditLogger.log("build_request", args, callerContext(exchange));
         String patientId = (String) args.get("patient_id");
         String service = (String) args.get("service");
@@ -244,11 +243,11 @@ public class ToolHandler {
         return "unknown";
     }
 
-    private CallToolResult success(String text) {
-        return new CallToolResult(List.of(new TextContent(text)), false);
+    private McpSchema.CallToolResult success(String text) {
+        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent(text)), false);
     }
 
-    private CallToolResult error(String message) {
-        return new CallToolResult(List.of(new TextContent(message)), true);
+    private McpSchema.CallToolResult error(String message) {
+        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent(message)), true);
     }
 }
