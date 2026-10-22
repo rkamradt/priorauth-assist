@@ -244,10 +244,10 @@ public class ToolHandler {
     }
 
     private McpSchema.CallToolResult success(String text) {
-        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent(text)), false);
+        return new McpSchema.CallToolResult(List.<McpSchema.Content>of(new McpSchema.TextContent(text)), false);
     }
 
     private McpSchema.CallToolResult error(String message) {
-        return new McpSchema.CallToolResult(List.of(new McpSchema.TextContent(message)), true);
+        return new McpSchema.CallToolResult(List.<McpSchema.Content>of(new McpSchema.TextContent(message)), true);
     }
 }

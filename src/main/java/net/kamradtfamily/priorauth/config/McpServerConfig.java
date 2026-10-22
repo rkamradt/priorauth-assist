@@ -4,8 +4,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import io.modelcontextprotocol.server.McpServer;
 import io.modelcontextprotocol.server.McpServerFeatures;
 import io.modelcontextprotocol.server.McpSyncServer;
-import io.modelcontextprotocol.server.transport.StdioServerTransport;
-import io.modelcontextprotocol.server.transport.WebFluxSseServerTransport;
+import io.modelcontextprotocol.server.transport.StdioServerTransportProvider;
+import io.modelcontextprotocol.server.transport.WebFluxSseServerTransportProviderProvider;
 import io.modelcontextprotocol.spec.McpSchema;
 import net.kamradtfamily.priorauth.tool.ToolHandler;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,11 +30,11 @@ public class McpServerConfig {
      * HTTP transport bean — null in stdio mode so the HTTP server is not started.
      */
     @Bean
-    public WebFluxSseServerTransport webFluxSseServerTransport(ObjectMapper objectMapper) {
+    public WebFluxSseServerTransportProvider webFluxSseServerTransport(ObjectMapper objectMapper) {
         if ("stdio".equalsIgnoreCase(transport)) {
             return null;
         }
-        return new WebFluxSseServerTransport(objectMapper, "/mcp");
+        return new WebFluxSseServerTransportProvider(objectMapper, "/mcp");
     }
 
     /**
@@ -44,16 +44,16 @@ public class McpServerConfig {
     public McpSyncServer mcpSyncServer(
             ToolHandler toolHandler,
             ObjectMapper objectMapper,
-            WebFluxSseServerTransport webFluxSseServerTransport) {
+            WebFluxSseServerTransportProvider webFluxSseServerTransport) {
 
         List<McpServerFeatures.SyncToolSpecification> tools = buildTools(toolHandler, objectMapper);
 
         McpSchema.ServerCapabilities caps = McpSchema.ServerCapabilities.builder()
-            .tools(McpSchema.ServerCapabilities.Tools.builder().listChanged(false).build())
+            .tools(false)
             .build();
 
         if ("stdio".equalsIgnoreCase(transport)) {
-            StdioServerTransport stdioTransport = new StdioServerTransport();
+            var stdioTransport = new StdioServerTransportProvider();
             return McpServer.sync(stdioTransport)
                 .serverInfo("priorauth-assist", "1.0.0")
                 .capabilities(caps)
@@ -73,7 +73,7 @@ public class McpServerConfig {
      */
     @Bean
     public RouterFunction<ServerResponse> mcpRouterFunction(
-            WebFluxSseServerTransport webFluxSseServerTransport) {
+            WebFluxSseServerTransportProvider webFluxSseServerTransport) {
         if (webFluxSseServerTransport == null) {
             return null;
         }
