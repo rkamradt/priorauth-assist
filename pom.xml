@@ -40,6 +40,12 @@
       <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
 
+    <!-- Actuator (health/readiness probes) -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-actuator</artifactId>
+    </dependency>
+
     <!-- HAPI FHIR R4 client -->
     <dependency>
       <groupId>ca.uhn.hapi.fhir</groupId>
