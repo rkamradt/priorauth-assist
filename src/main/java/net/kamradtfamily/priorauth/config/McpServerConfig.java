@@ -77,7 +77,10 @@ public class McpServerConfig {
         if (webFluxSseServerTransport == null) {
             return null;
         }
-        return webFluxSseServerTransport.getRouterFunction();
+        @SuppressWarnings("unchecked")
+        RouterFunction<ServerResponse> rf =
+            (RouterFunction<ServerResponse>) webFluxSseServerTransport.getRouterFunction();
+        return rf;
     }
 
     // ---- tool registrations ----
