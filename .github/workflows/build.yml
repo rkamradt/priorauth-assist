@@ -4,9 +4,13 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
-    uses: rkamradt/ci-workflows/.github/workflows/java-image.yml@v1
+    uses: rkamradt/ci-workflows/.github/workflows/java-image.yml@main
     with:
       helm-chart-dir: priorauth-assist
       push-latest: true
